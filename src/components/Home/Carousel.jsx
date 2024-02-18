@@ -14,7 +14,6 @@ import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 
 const CarouselComp = ({ data }) => {
-  console.log("data : ", data);
   return (
     <div className="w-full ">
       {data && (

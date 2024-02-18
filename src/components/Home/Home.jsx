@@ -56,13 +56,13 @@ const Home = () => {
     fetchShows();
   }, []);
   return (
-    <div className="flex flex-col gap-10 mb-8">
-      <div className="movies flex flex-col gap-7 pl-14 pr-14">
-        <div className="title text-6xl ">Movies</div>
+    <div className="flex flex-col gap-5 md:gap-10 mb-8">
+      <div className="movies flex flex-col gap-1 md:gap-7 pl-14 pr-14">
+        <div className="title text-5xl md:text-6xl ">Movies</div>
         {movies && <CarouselComp data={movies?.results} />}
       </div>
-      <div className="shows flex flex-col gap-7 pl-14 pr-14">
-        <div className="title text-6xl">TV Shows</div>
+      <div className="shows flex flex-col gap-1 md:gap-7 pl-14 pr-14">
+        <div className="title text-5xl md:text-6xl ">TV Shows</div>
         {shows && <CarouselComp data={shows?.results} />}
       </div>
     </div>
