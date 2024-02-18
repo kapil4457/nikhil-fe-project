@@ -26,7 +26,7 @@ const CarouselComp = ({ data }) => {
           opts={{
             align: "start",
           }}
-          className="w-full h-[30rem] flex items-center"
+          className="w-full h-[27rem]  md:h-[28rem] flex items-center"
         >
           <CarouselContent className="h-full">
             {data?.map((item, index) => (
