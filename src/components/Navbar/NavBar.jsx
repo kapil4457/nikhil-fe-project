@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "../mode-toggle";
@@ -12,8 +12,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+  const searchHandler = async () => {
+    if (searchText === "") {
+      toast.error("Please enter a keyword to search for.");
+      return;
+    }
+    navigate(`/search?keyword=${searchText}`);
+  };
   return (
     <div
       id="navbar-cont"
@@ -36,8 +46,14 @@ const Navbar = () => {
         </div>
 
         <div className="searchBar flex gap-2">
-          <Input placeholder="Enter something " />
-          <Button>Search</Button>
+          <Input
+            placeholder="Enter something "
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <Button onClick={searchHandler}>Search</Button>
         </div>
         <ModeToggle />
       </div>
@@ -54,8 +70,15 @@ const Navbar = () => {
             </SheetHeader>
             <div className="flex flex-col pt-8 gap-3">
               <div className="flex gap-4">
-                <Input id="filter" placeholder="Enter something" />
-                <Button>Search</Button>
+                <Input
+                  id="filter"
+                  placeholder="Enter something"
+                  value={searchText}
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                  }}
+                />
+                <Button onClick={searchHandler}>Search</Button>
               </div>
               <div className="flex flex-col gap-2">
                 <Link
