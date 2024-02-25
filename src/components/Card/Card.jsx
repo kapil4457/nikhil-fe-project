@@ -58,7 +58,7 @@ const Card = ({ item, type }) => {
             </>
           )}
         </div>
-        <div className="flex w-full items-center justify-center card-title">
+        <div className="flex w-full items-center justify-center card-title text-sm">
           {item?.name ? item?.name : item?.title}
         </div>
       </div>

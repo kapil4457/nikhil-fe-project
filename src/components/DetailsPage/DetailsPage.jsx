@@ -242,7 +242,7 @@ const DetailsPage = () => {
             </div>
           )}
           {result?.info?.production_companies &&
-            result?.info?.production_companies?.length && (
+            result?.info?.production_companies?.length > 0 && (
               <div className="flex items-center gap-2">
                 <b>Production Companies : </b>
                 <div className="flex items-center gap-2">
@@ -304,7 +304,7 @@ const DetailsPage = () => {
           )}
           {result?.credits &&
             result?.credits?.cast &&
-            result?.credits?.cast?.length && (
+            result?.credits?.cast?.length > 0 && (
               <div className="flex flex-col  items-center gap-2">
                 <b className="w-full ">Cast </b>
                 <div className="flex items-center gap-2 flex-wrap w-full">
@@ -376,7 +376,7 @@ const DetailsPage = () => {
       </div>
       {result?.recommendation && result?.recommendation?.length > 0 && (
         <div className="second-section flex flex-col gap-3 w-[100%]">
-          <h1 className="text-4xl font-bold">Recommended</h1>
+          <h1 className="text-4xl font-bold">Related</h1>
           <div id="recommendation-carousel">
             <CarouselComp data={result?.recommendation} type={params.type} />
           </div>
