@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import { Rating } from "@mui/material";
 import {
@@ -18,7 +18,7 @@ const DetailsPage = () => {
     info: null,
     credits: null,
     images: null,
-    recommendations: null,
+    recommendation: null,
     reviews: null,
     video: null,
     providers: null,
@@ -134,7 +134,7 @@ const DetailsPage = () => {
   }, [params.id, params.type]);
 
   return (
-    <div className="lg:pl-20 lg:pr-20 pt-10 flex flex-col gap-10 ">
+    <div className="lg:pl-20 lg:pr-20 pt-10 pb-10 flex flex-col gap-10 ">
       <div className="first-section flex gap-10  ">
         <div className="image-slider">
           {(result?.images &&
@@ -189,6 +189,14 @@ const DetailsPage = () => {
                   readOnly
                 />
                 ({result?.info?.vote_count})
+              </div>
+            </div>
+          )}
+          {result?.video && (
+            <div className="flex items-center gap-2">
+              <b>Watch on : </b>
+              <div className="flex items-center gap-2">
+                <Badge>{result?.video?.site}</Badge>
               </div>
             </div>
           )}
@@ -366,12 +374,14 @@ const DetailsPage = () => {
             )}
         </div>
       </div>
-      <div className="second-section flex flex-col gap-3 w-[100%]">
-        <h1 className="text-4xl font-bold">Recommended</h1>
-        <div id="recommendation-carousel">
-          <CarouselComp data={result?.recommendation} type={params.type} />
+      {result?.recommendation && result?.recommendation?.length > 0 && (
+        <div className="second-section flex flex-col gap-3 w-[100%]">
+          <h1 className="text-4xl font-bold">Recommended</h1>
+          <div id="recommendation-carousel">
+            <CarouselComp data={result?.recommendation} type={params.type} />
+          </div>
         </div>
-      </div>
+      )}
       <div className="third-section reviews flex flex-col gap-3">
         <h1 className="text-4xl font-bold">Reviews</h1>
         <div className="reviews-cont flex flex-wrap gap-3">
