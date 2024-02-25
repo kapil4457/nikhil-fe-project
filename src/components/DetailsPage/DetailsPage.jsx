@@ -500,7 +500,7 @@ const DetailsPage = () => {
                           item?.author_details &&
                           item?.author_details?.avatar_path
                             ? `https://image.tmdb.org/t/p/original/${item?.author_details?.avatar_path}`
-                            : "/no-poster.jpg"
+                            : "/profile-pic.jpg"
                         }
                         alt=""
                       />
