@@ -55,17 +55,45 @@
   }
 }
 @media all and (max-width: 1300px) {
+  .second-section {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  #recommendation-carousel {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
   .result-cards {
     grid-template-columns: repeat(2, 1fr);
   }
   #result-card {
     width: 28rem;
   }
+  .first-section {
+    padding: 0 !important;
+    flex-direction: column;
+  }
+
+  .third-section {
+    padding: 2rem !important;
+  }
+  .image-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .details {
+    padding: 2rem;
+  }
 }
 @media all and (max-width: 960px) {
   #result-card {
     width: 80%;
     align-self: center;
+  }
+  #recommendation-carousel {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
   }
 }
 @media all and (max-width: 650px) {
@@ -75,6 +103,10 @@
   #result-card {
     width: 100%;
     align-self: center;
+  }
+  #recommendation-carousel {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
   }
 }
 @media all and (max-width: 550px) {
