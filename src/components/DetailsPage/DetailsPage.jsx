@@ -2,7 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Rating } from "@mui/material";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import {
   Tooltip,
   TooltipContent,
@@ -175,10 +187,18 @@ const DetailsPage = () => {
           )}
         </div>
         <div className="details flex flex-col gap-3">
-          <h1 className="text-4xl font-bold">{result?.info?.original_name}</h1>
+          <h1 className="text-4xl font-bold">
+            {result?.info?.original_name
+              ? result?.info?.original_name
+              : result?.info?.original_title
+              ? result?.info?.original_title
+              : result?.info?.title
+              ? result?.info?.title
+              : result?.info?.name}
+          </h1>
 
           <em>{result?.info?.overview}</em>
-          {result?.info?.vote_average && (
+          {result?.info?.vote_average > 0 && result?.info?.vote_count > 0 && (
             <div className="flex items-center gap-2">
               <b>Rating : </b>
               <div className="flex items-center gap-2">
@@ -188,7 +208,7 @@ const DetailsPage = () => {
                   precision={0.1}
                   readOnly
                 />
-                ({result?.info?.vote_count})
+                <>({result?.info?.vote_count})</>
               </div>
             </div>
           )}
@@ -217,7 +237,7 @@ const DetailsPage = () => {
                           src={
                             ele?.profile_path
                               ? `https://image.tmdb.org/t/p/original/${ele?.profile_path}`
-                              : "/no-poster.jpg"
+                              : "/profile-pic.jpg"
                           }
                           alt=""
                         />
@@ -245,31 +265,49 @@ const DetailsPage = () => {
             result?.info?.production_companies?.length > 0 && (
               <div className="flex items-center gap-2">
                 <b>Production Companies : </b>
-                <div className="flex items-center gap-2">
-                  {result?.info?.production_companies?.map((ele) => (
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <img
-                            className="h-10 w-10"
-                            style={{
-                              borderRadius: "100%",
-                              boxShadow: "0 0 5px 1px grey",
-                            }}
-                            src={
-                              ele?.logo_path
-                                ? `https://image.tmdb.org/t/p/original/${ele?.logo_path}`
-                                : "/no-poster.jpg"
-                            }
-                            alt=""
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{ele?.name}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  ))}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline">View</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader className="flex flex-col gap-4">
+                        <DialogTitle>Production Companies</DialogTitle>
+                        <DialogDescription>
+                          <ScrollArea className="h-[300px] rounded-md border p-4">
+                            <div className="w-full flex items-center gap-2 flex-wrap">
+                              {result?.info?.production_companies?.map(
+                                (ele) => (
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <img
+                                          className="h-14 w-14 sm:h-16 sm:w-16 lg:h-24 lg:w-24 bg-[rgba(0,0,0,0.2)] dark:bg-white object-contain"
+                                          style={{
+                                            borderRadius: "100%",
+                                            boxShadow: "0 0 5px 1px grey",
+                                          }}
+                                          src={
+                                            ele?.logo_path
+                                              ? `https://image.tmdb.org/t/p/original/${ele?.logo_path}`
+                                              : "/no-poster.jpg"
+                                          }
+                                          alt=""
+                                        />
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>{ele?.name}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                )
+                              )}
+                            </div>
+                          </ScrollArea>
+                        </DialogDescription>
+                      </DialogHeader>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
             )}
@@ -305,9 +343,53 @@ const DetailsPage = () => {
           {result?.credits &&
             result?.credits?.cast &&
             result?.credits?.cast?.length > 0 && (
-              <div className="flex flex-col  items-center gap-2">
-                <b className="w-full ">Cast </b>
-                <div className="flex items-center gap-2 flex-wrap w-full">
+              <div className="flex   items-center gap-2">
+                <b>Cast :</b>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">View Casting Members</Button>
+                  </DialogTrigger>
+                  <DialogContent
+                    style={{ boxShadow: "0 0 20px 0px rgba(0,0,0,0.9)" }}
+                  >
+                    <DialogHeader className="flex flex-col gap-4">
+                      <DialogTitle>Cast</DialogTitle>
+                      <DialogDescription>
+                        <ScrollArea className="h-[300px] rounded-md border p-4">
+                          <div className="flex items-center gap-2 flex-wrap w-full">
+                            {result?.credits?.cast?.map((ele) => {
+                              return (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger>
+                                      <img
+                                        className="h-14 w-14 sm:h-16 sm:w-16 lg:h-24 lg:w-24"
+                                        style={{
+                                          borderRadius: "100%",
+                                          boxShadow: "0 0 5px 1px grey",
+                                        }}
+                                        src={
+                                          ele?.profile_path
+                                            ? `https://image.tmdb.org/t/p/original/${ele?.profile_path}`
+                                            : "/profile-pic.jpg"
+                                        }
+                                        alt=""
+                                      />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p>{ele?.name}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              );
+                            })}
+                          </div>
+                        </ScrollArea>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+                {/* <div className="flex items-center gap-2 flex-wrap w-full">
                   {result?.credits?.cast?.map((ele) => {
                     return (
                       <TooltipProvider>
@@ -322,7 +404,7 @@ const DetailsPage = () => {
                               src={
                                 ele?.profile_path
                                   ? `https://image.tmdb.org/t/p/original/${ele?.profile_path}`
-                                  : "/no-poster.jpg"
+                                  : "/profile-pic.jpg"
                               }
                               alt=""
                             />
@@ -334,42 +416,56 @@ const DetailsPage = () => {
                       </TooltipProvider>
                     );
                   })}
-                </div>
+                </div> */}
               </div>
             )}
           {result?.credits &&
             result?.credits?.crew &&
             result?.credits?.crew?.length > 0 && (
-              <div className="flex flex-col items-center gap-2">
-                <b className="w-full">Crew </b>
-                <div className="w-full flex items-center gap-2 flex-wrap">
-                  {result?.credits?.crew?.map((ele) => {
-                    return (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <img
-                              className="h-10 w-10 object-cover"
-                              style={{
-                                borderRadius: "100%",
-                                boxShadow: "0 0 5px 1px grey",
-                              }}
-                              src={
-                                ele?.profile_path
-                                  ? `https://image.tmdb.org/t/p/original/${ele?.profile_path}`
-                                  : "/no-poster.jpg"
-                              }
-                              alt=""
-                            />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{ele?.name}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    );
-                  })}
-                </div>
+              <div className="flex items-center gap-2">
+                <b>Crew :</b>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">View Crew Members</Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader className="flex flex-col gap-4">
+                      <DialogTitle>Crew</DialogTitle>
+                      <DialogDescription>
+                        <ScrollArea className="h-[300px] rounded-md border p-4">
+                          <div className="w-full flex items-center gap-2 flex-wrap">
+                            {result?.credits?.crew?.map((ele) => {
+                              return (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger>
+                                      <img
+                                        className="h-14 w-14 sm:h-16 sm:w-16 lg:h-24 lg:w-24"
+                                        style={{
+                                          borderRadius: "100%",
+                                          boxShadow: "0 0 5px 1px grey",
+                                        }}
+                                        src={
+                                          ele?.profile_path
+                                            ? `https://image.tmdb.org/t/p/original/${ele?.profile_path}`
+                                            : "/profile-pic.jpg"
+                                        }
+                                        alt=""
+                                      />
+                                    </TooltipTrigger>
+                                    <TooltipContent className="dark:bg-white dark:text-black ">
+                                      <p>{ele?.name}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              );
+                            })}
+                          </div>
+                        </ScrollArea>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               </div>
             )}
         </div>

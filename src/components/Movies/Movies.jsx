@@ -49,7 +49,7 @@ const Movies = () => {
         id="filters"
         className="filters w-full flex pl-10 pr-10 justify-between  items-center gap-10"
       >
-        <div id="kids-mode">
+        {/* <div id="kids-mode">
           <div className="flex items-center space-x-2">
             <Switch
               id="kids-mode"
@@ -63,7 +63,7 @@ const Movies = () => {
             />
             <Label htmlFor="kids-mode">18+ Mode</Label>
           </div>
-        </div>
+        </div> */}
         <div id="rating-range" className="flex gap-2 flex-col">
           <Label htmlFor="rating-min">Min Rating</Label>
           <Box sx={{ width: 300 }}>
