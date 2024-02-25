@@ -40,7 +40,7 @@
 }
 
 /* grid grid-cols-3 gap-y-12 md:grid-cols-2  lg:grid-cols-4 */
-#result-cards {
+.result-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 4rem;
@@ -50,12 +50,12 @@
 }
 
 @media all and (max-width: 1700px) {
-  #result-cards {
+  .result-cards {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media all and (max-width: 1300px) {
-  #result-cards {
+  .result-cards {
     grid-template-columns: repeat(2, 1fr);
   }
   #result-card {
@@ -69,7 +69,7 @@
   }
 }
 @media all and (max-width: 650px) {
-  #result-cards {
+  .result-cards {
     grid-template-columns: repeat(1, 1fr);
   }
   #result-card {

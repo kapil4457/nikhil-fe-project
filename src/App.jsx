@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar/NavBar";
 import { Route, Routes } from "react-router";
 import Home from "./components/Home/Home";
 import SearchPage from "./components/SearchPage/SearchPage";
+import Movies from "./components/Movies/Movies";
+import Shows from "./components/Shows/Shows";
+import DetailsPage from "./components/DetailsPage/DetailsPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,6 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/shows" element={<Shows />} />
+          <Route path="/details/:type/:id" element={<DetailsPage />} />
         </Routes>
       </div>
     </>

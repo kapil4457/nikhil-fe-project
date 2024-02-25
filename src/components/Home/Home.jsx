@@ -59,11 +59,11 @@ const Home = () => {
     <div className="flex flex-col gap-5 md:gap-10 mb-8">
       <div className="movies flex flex-col gap-1 md:gap-7 pl-14 pr-14">
         <div className="title text-5xl md:text-6xl ">Movies</div>
-        {movies && <CarouselComp data={movies?.results} />}
+        {movies && <CarouselComp type="movie" data={movies?.results} />}
       </div>
       <div className="shows flex flex-col gap-1 md:gap-7 pl-14 pr-14">
         <div className="title text-5xl md:text-6xl ">TV Shows</div>
-        {shows && <CarouselComp data={shows?.results} />}
+        {shows && <CarouselComp type="show" data={shows?.results} />}
       </div>
     </div>
   );

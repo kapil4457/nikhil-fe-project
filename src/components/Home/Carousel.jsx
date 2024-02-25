@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/carousel";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
-const CarouselComp = ({ data }) => {
+const CarouselComp = ({ data, type }) => {
   return (
     <div className="w-full ">
       {data && (
@@ -61,9 +62,14 @@ const CarouselComp = ({ data }) => {
                     </div>
                   </div>
                   <div className="row-span-2 flex items-center align-center w-full pl-3 pr-3">
-                    <Button variant="default" className="w-full">
-                      Read More
-                    </Button>
+                    <Link
+                      to={`/details/${type}/${item?.id}`}
+                      className="w-full"
+                    >
+                      <Button variant="default" className="w-full">
+                        Read More
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CarouselItem>

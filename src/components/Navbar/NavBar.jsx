@@ -22,6 +22,7 @@ const Navbar = () => {
       toast.error("Please enter a keyword to search for.");
       return;
     }
+    setSearchText("");
     navigate(`/search?keyword=${searchText}`);
   };
   return (
