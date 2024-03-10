@@ -5,6 +5,8 @@ import ImageSlider from "../ImageSlider/ImageSlider";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Rating } from "@mui/material";
 import { Button } from "@/components/ui/button";
+import ReadMoreReact from "read-more-react";
+
 import {
   Dialog,
   DialogContent,
@@ -528,14 +530,14 @@ const DetailsPage = () => {
       )}
       <div className="third-section reviews flex flex-col gap-3">
         <h1 className="text-4xl font-bold">Reviews</h1>
-        <div className="reviews-cont flex flex-wrap gap-3">
+        <div className="reviews-cont flex flex-col gap-3">
           {result?.reviews?.results && result?.reviews?.results.length > 0 ? (
             <>
               {result?.reviews?.results?.map((item) => {
                 return (
                   <div
                     style={{ borderRadius: "10px" }}
-                    className=" flex flex-col  gap-3 max-w-[54rem] bg-[#020817] dark:bg-white p-4 "
+                    className=" flex flex-col  gap-3  bg-[#020817] dark:bg-white p-4 "
                   >
                     <div className="flex items-center gap-3 ">
                       <img
@@ -565,7 +567,19 @@ const DetailsPage = () => {
                       />
                     )}
                     <em className="text-white dark:text-[#020817]">
-                      {item?.content}
+                      <ReadMoreReact
+                        text={item?.content}
+                        min={700}
+                        ideal={750}
+                        max={800}
+                        readMoreText={
+                          <>
+                            <Button className="mt-2" variant="secondary">
+                              Read More
+                            </Button>
+                          </>
+                        }
+                      />
                     </em>
                   </div>
                 );
