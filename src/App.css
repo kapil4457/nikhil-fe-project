@@ -69,7 +69,7 @@
 #heading {
   font-family: barettStreet;
   letter-spacing: 2px;
-  font-size: 4rem;
+  font-size: 5rem;
   color: gold;
 }
 @media all and (max-width: 1700px) {

@@ -28,12 +28,12 @@ const Navbar = () => {
   return (
     <div
       id="navbar-cont"
-      className="p-4 fixed  top-0 left-0 right-0 flex justify-between h-[7rem] w-[full] z-50 bg-white  dark:bg-[#020817]"
+      className="p-4 fixed  top-0 left-0 right-0 flex justify-between h-[7rem] w-[full] z-50 bg-white  dark:bg-[#020817] items-center "
     >
-      <Link to="/" className="flex gap-4 items-center">
+      <Link to="/" className="flex gap-7 items-center">
         <img src="/logo3.png" alt="Logo" className="h-[5rem] w-[5rem]" />
         <p className="text-2xl" id="heading">
-          Movie Finder
+          Cinepedia
         </p>
       </Link>
       <div className="lg:flex gap-3 hidden">
