@@ -1,12 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import CarouselComp from "./Carousel";
+import CarouselComp from "../Home/Carousel";
 
-const Home = () => {
+const Upcoming = () => {
   const [movies, setMovies] = useState();
   const [shows, setShows] = useState();
   const fetchMovies = async () => {
     try {
+      let year = new Date().getFullYear();
+      let month = new Date().getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month.toString();
+      }
+
+      let date = new Date().getDate();
+      if (date < 10) {
+        date = "0" + date.toString();
+      }
+      let todayDate = `${year}-${month}-${date}`;
+      console.log(todayDate);
       const options = {
         method: "GET",
         url: "https://api.themoviedb.org/3/discover/movie",
@@ -17,7 +29,9 @@ const Home = () => {
           include_video: "false",
           language: "en-US",
           page: "1",
-          sort_by: "popularity.desc",
+          "primary_release_date.gte": todayDate,
+          "release_date.gte": todayDate,
+          sort_by: "primary_release_date.asc",
         },
         headers: {
           accept: "application/json",
@@ -32,6 +46,17 @@ const Home = () => {
   };
   const fetchShows = async () => {
     try {
+      let year = new Date().getFullYear();
+      let month = new Date().getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month.toString();
+      }
+
+      let date = new Date().getDate();
+      if (date < 10) {
+        date = "0" + date.toString();
+      }
+      let todayDate = `${year}-${month}-${date}`;
       const options = {
         method: "GET",
         url: "https://api.themoviedb.org/3/discover/tv",
@@ -40,7 +65,11 @@ const Home = () => {
           include_video: "false",
           language: "en-US",
           page: "1",
-          sort_by: "popularity.desc",
+          "primary_release_date.gte": todayDate,
+          "release_date.gte": todayDate,
+          sort_by: "primary_release_date.desc",
+          "vote_average.lte": "0",
+          "vote_count.lte": "0",
         },
         headers: {
           accept: "application/json",
@@ -71,4 +100,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Upcoming;

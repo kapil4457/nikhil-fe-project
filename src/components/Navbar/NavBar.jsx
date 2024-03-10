@@ -41,6 +41,12 @@ const Navbar = () => {
           <Link to="/">
             <Button variant="secondary">Home</Button>
           </Link>
+          <Link to="/latest-shows-and-movies">
+            <Button variant="secondary">Latest</Button>
+          </Link>
+          <Link to="/upcoming-shows-and-movies">
+            <Button variant="secondary">Upcoming</Button>
+          </Link>
           <Link to="/movies">
             <Button variant="secondary">Movies</Button>
           </Link>
@@ -90,6 +96,18 @@ const Navbar = () => {
                   className="w-full flex justify-center align-center border-b"
                 >
                   <Button variant="link">Home</Button>
+                </Link>
+                <Link
+                  to="/latest-shows-and-movies"
+                  className="w-full flex justify-center align-center border-b"
+                >
+                  <Button variant="link">Latest</Button>
+                </Link>
+                <Link
+                  to="/upcoming-shows-and-movies"
+                  className="w-full flex justify-center align-center border-b"
+                >
+                  <Button variant="link">Upcoming</Button>
                 </Link>
                 <Link
                   to="/movies"

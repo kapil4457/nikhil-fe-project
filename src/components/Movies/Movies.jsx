@@ -25,7 +25,7 @@ const Movies = () => {
         filters?.pageNo
       }&sort_by=primary_release_date.desc&vote_average.gte=${
         filters?.minRating * 2
-      }`,
+      }&vote_count.gte=1`,
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${import.meta.env.VITE_Access_Token_Auth}`,

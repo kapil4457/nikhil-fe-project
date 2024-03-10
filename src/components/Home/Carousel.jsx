@@ -49,13 +49,27 @@ const CarouselComp = ({ data, type }) => {
                   </div>
                   <div className=" row-span-3 md:row-span-2 flex flex-col details p-2 gap-3">
                     <div className="flex gap-1 w-full justify-center">
-                      <Rating
-                        name="user-rating"
-                        value={item?.vote_average / 2}
-                        precision={0.1}
-                        readOnly
-                      />
-                      ({item?.vote_count})
+                      {item?.vote_average === 0 ? (
+                        <div
+                          className=" h-[2rem] w-[6rem] flex justify-center items-center text-orange-400 font-bold "
+                          style={{
+                            letterSpacing: "2px",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          UPCOMING
+                        </div>
+                      ) : (
+                        <>
+                          <Rating
+                            name="user-rating"
+                            value={item?.vote_average / 2}
+                            precision={0.1}
+                            readOnly
+                          />
+                          ({item?.vote_count})
+                        </>
+                      )}
                     </div>
                     <div className="flex w-full items-center justify-center card-title">
                       {item?.name ? item?.name : item?.title}

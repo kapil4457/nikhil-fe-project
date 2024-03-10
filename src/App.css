@@ -37,7 +37,8 @@
   font-family: urbanist;
 }
 .title {
-  font-family: ComicFont;
+  font-family: broncoPersonalUse;
+  letter-spacing: 2px;
 }
 
 .carousel-card {
