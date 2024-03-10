@@ -23,7 +23,7 @@ const Movies = () => {
       method: "GET",
       url: `https://api.themoviedb.org/3/discover/movie?include_video=true&language=en-US&page=${
         filters?.pageNo
-      }&sort_by=primary_release_date.desc&vote_average.gte=${
+      }&sort_by=popularity.desc&vote_average.gte=${
         filters?.minRating * 2
       }&vote_count.gte=1`,
       headers: {
