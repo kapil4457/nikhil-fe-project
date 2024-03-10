@@ -41,7 +41,15 @@ const CarouselComp = ({ data, type }) => {
                 >
                   <div className="row-span-5 md:row-span-6 max-h-[100%] w-full p-2">
                     <img
-                      src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                      src={
+                        item?.poster_path || item?.backdrop_path
+                          ? `https://image.tmdb.org/t/p/original/${
+                              item?.poster_path
+                                ? item?.poster_path
+                                : item?.backdrop_path
+                            }`
+                          : "/no-poster.jpg"
+                      }
                       style={{ borderRadius: "10px" }}
                       alt={item?.name ? item?.name : item?.title}
                       className=" max-h-[100%] w-full"
@@ -71,7 +79,7 @@ const CarouselComp = ({ data, type }) => {
                         </>
                       )}
                     </div>
-                    <div className="flex w-full items-center justify-center card-title">
+                    <div className="flex w-full items-center justify-center card-title text-base ">
                       {item?.name ? item?.name : item?.title}
                     </div>
                   </div>
