@@ -30,8 +30,11 @@ const Navbar = () => {
       id="navbar-cont"
       className="p-4 fixed  top-0 left-0 right-0 flex justify-between h-[7rem] w-[full] z-50 bg-white  dark:bg-[#020817]"
     >
-      <Link to="/">
+      <Link to="/" className="flex gap-4 items-center">
         <img src="/logo3.png" alt="Logo" className="h-[5rem] w-[5rem]" />
+        <p className="text-2xl" id="heading">
+          Movie Finder
+        </p>
       </Link>
       <div className="lg:flex gap-3 hidden">
         <div className="nav-menu flex gap-2">
@@ -48,7 +51,7 @@ const Navbar = () => {
 
         <div className="searchBar flex gap-2">
           <Input
-            placeholder="Enter something "
+            placeholder="Enter movie/show name "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -73,7 +76,7 @@ const Navbar = () => {
               <div className="flex gap-4">
                 <Input
                   id="filter"
-                  placeholder="Enter something"
+                  placeholder="Enter movie/show name"
                   value={searchText}
                   onChange={(e) => {
                     setSearchText(e.target.value);

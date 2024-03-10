@@ -35,6 +35,7 @@ const DetailsPage = () => {
     video: null,
     providers: null,
   });
+  const [query, setQuery] = useState("");
   const fetchData = async () => {
     try {
       const options1 = {
@@ -127,7 +128,15 @@ const DetailsPage = () => {
         recommendation: recommendations.results,
         reviews,
         video: videos.results.length > 0 ? videos.results[0] : null,
-        providers: providers.results,
+        providers: providers.results.IN
+          ? providers.results.IN?.buy
+            ? providers.results.IN?.buy
+            : providers.results.IN?.flatrate
+            ? providers.results.IN?.flatrate
+            : providers.results.IN?.rent
+            ? providers.results.IN?.rent
+            : null
+          : null,
       });
 
       // console.log("info : ", info);
@@ -141,6 +150,27 @@ const DetailsPage = () => {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    if (
+      result?.info?.original_name ||
+      result?.info?.original_title ||
+      result?.info?.title ||
+      result?.info?.name
+    ) {
+      let name = result?.info?.original_name
+        ? result?.info?.original_name
+        : result?.info?.original_title
+        ? result?.info?.original_title
+        : result?.info?.title
+        ? result?.info?.title
+        : result?.info?.name;
+
+      let ans = name.replace(" ", "+");
+      ans += "+trailer";
+      setQuery(ans);
+    }
+  }, [result]);
   useEffect(() => {
     fetchData();
   }, [params.id, params.type]);
@@ -214,9 +244,27 @@ const DetailsPage = () => {
           )}
           {result?.video && (
             <div className="flex items-center gap-2">
+              <b>Watch Trailer on : </b>
+              <div className="flex items-center gap-2">
+                {result?.video?.site.toLowerCase() === "youtube" ? (
+                  <Link
+                    to={`https://www.youtube.com/results?search_query=${query}`}
+                  >
+                    <Badge>{result?.video?.site}</Badge>
+                  </Link>
+                ) : (
+                  <Badge>{result?.video?.site}</Badge>
+                )}
+              </div>
+            </div>
+          )}
+          {result?.providers && result?.providers && (
+            <div className="flex items-center gap-2">
               <b>Watch on : </b>
               <div className="flex items-center gap-2">
-                <Badge>{result?.video?.site}</Badge>
+                {result?.providers?.map((item) => {
+                  return <Badge>{item.provider_name}</Badge>;
+                })}
               </div>
             </div>
           )}

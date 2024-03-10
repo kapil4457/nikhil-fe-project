@@ -10,6 +10,8 @@ const Home = () => {
       const options = {
         method: "GET",
         url: "https://api.themoviedb.org/3/discover/movie",
+        // url: "https://api.themoviedb.org/3/movie/latest",
+        // url: "https://api.themoviedb.org/3/trending/movie/day",
         params: {
           include_adult: "false",
           include_video: "false",
