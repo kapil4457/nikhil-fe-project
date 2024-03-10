@@ -230,7 +230,7 @@ const DetailsPage = () => {
           <em>{result?.info?.overview}</em>
           {result?.info?.vote_average > 0 && result?.info?.vote_count > 0 && (
             <div className="flex items-center gap-2">
-              <b>Rating : </b>
+              <b className="text-nowrap">Rating : </b>
               <div className="flex items-center gap-2">
                 <Rating
                   name="user-rating"
@@ -244,7 +244,7 @@ const DetailsPage = () => {
           )}
           {result?.video && (
             <div className="flex items-center gap-2">
-              <b>Watch Trailer on : </b>
+              <b className="text-nowrap">Watch Trailer on : </b>
               <div className="flex items-center gap-2">
                 {result?.video?.site.toLowerCase() === "youtube" ? (
                   <Link
@@ -259,9 +259,9 @@ const DetailsPage = () => {
             </div>
           )}
           {result?.providers && result?.providers && (
-            <div className="flex items-center gap-2">
-              <b>Watch on : </b>
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <b className="text-nowrap">Available on : </b>
+              <div className="flex flex-wrap items-center gap-2">
                 {result?.providers?.map((item) => {
                   return <Badge>{item.provider_name}</Badge>;
                 })}
@@ -270,8 +270,8 @@ const DetailsPage = () => {
           )}
           {result?.info?.created_by && (
             <div className="flex items-center gap-2">
-              <b>Created by : </b>
-              <div className="flex items-center gap-2">
+              <b className="text-nowrap">Created by : </b>
+              <div className="flex flex-wrap items-center gap-2">
                 {result?.info?.created_by?.map((ele) => (
                   <TooltipProvider>
                     <Tooltip>
@@ -301,8 +301,8 @@ const DetailsPage = () => {
           )}
           {result?.info?.spoken_languages && (
             <div className="flex items-center gap-2">
-              <b>Languages : </b>
-              <div className="flex items-center gap-2">
+              <b className="text-nowrap">Languages : </b>
+              <div className="flex flex-wrap items-center gap-2">
                 {result?.info?.spoken_languages?.map((ele) => (
                   <Badge>{ele?.name}</Badge>
                 ))}
@@ -312,7 +312,7 @@ const DetailsPage = () => {
           {result?.info?.production_companies &&
             result?.info?.production_companies?.length > 0 && (
               <div className="flex items-center gap-2">
-                <b>Production Companies : </b>
+                <b className="text-nowrap">Production Companies : </b>
                 <div className="flex items-center gap-2 flex-wrap">
                   <Dialog>
                     <DialogTrigger asChild>
@@ -361,7 +361,7 @@ const DetailsPage = () => {
             )}
           {result?.info?.seasons && (
             <div className="flex items-center gap-2">
-              <b>No. of Seasons : </b>
+              <b className="text-nowrap">No. of Seasons : </b>
               <div className="flex items-center gap-2">
                 {result?.info?.seasons?.length} (
                 {result?.info?.number_of_episodes} episodes)
@@ -369,9 +369,9 @@ const DetailsPage = () => {
             </div>
           )}
           {result?.info?.genres && (
-            <div className="flex items-center gap-2">
-              <b>Genres : </b>
-              <div className="flex items-center gap-2">
+            <div className="flex  items-center gap-2">
+              <b className="text-nowrap">Genres : </b>
+              <div className="flex flex-wrap items-center gap-2">
                 {result?.info?.genres?.map((ele) => {
                   return <Badge>{ele?.name}</Badge>;
                 })}
@@ -380,8 +380,8 @@ const DetailsPage = () => {
           )}
           {result?.info?.networks && (
             <div className="flex items-center gap-2">
-              <b>Networks : </b>
-              <div className="flex items-center gap-2">
+              <b className="text-nowrap">Networks : </b>
+              <div className="flex flex-wrap items-center gap-2">
                 {result?.info?.networks?.map((ele) => {
                   return <Badge>{ele?.name}</Badge>;
                 })}
@@ -392,7 +392,7 @@ const DetailsPage = () => {
             result?.credits?.cast &&
             result?.credits?.cast?.length > 0 && (
               <div className="flex   items-center gap-2">
-                <b>Cast :</b>
+                <b className="text-nowrap">Cast :</b>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline">View Casting Members</Button>
@@ -471,7 +471,7 @@ const DetailsPage = () => {
             result?.credits?.crew &&
             result?.credits?.crew?.length > 0 && (
               <div className="flex items-center gap-2">
-                <b>Crew :</b>
+                <b className="text-nowrap">Crew :</b>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline">View Crew Members</Button>
